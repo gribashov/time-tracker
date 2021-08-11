@@ -1,6 +1,7 @@
 import "./App.scss";
 import { FormValidator } from "./components/FormValidator";
 
+
 function App() {
   return (
     <>
