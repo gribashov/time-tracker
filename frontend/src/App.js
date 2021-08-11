@@ -1,12 +1,11 @@
-import './App.css';
-import {FormValidator} from "./components/FormValidator"
-import 'antd/dist/antd.css'; 
+import "./App.scss";
+import { FormValidator } from "./components/FormValidator";
 
 function App() {
   return (
-    <div className="container">
-    <FormValidator />
-    </div>
+    <>
+      <FormValidator />
+    </>
   );
 }
 
