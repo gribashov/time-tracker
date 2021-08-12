@@ -1,3 +1,4 @@
+// libraries
 import React, { useState, useEffect } from "react";
 
 export const useValidation = (value, validations) => {
@@ -28,7 +29,7 @@ export const useValidation = (value, validations) => {
           break;
       }
     }
-  }, [value]);
+  }, [value, validations]);
 
   useEffect(() => {
     if (isEmpty || isMinLength || isValidEmail || isMaxLength) {

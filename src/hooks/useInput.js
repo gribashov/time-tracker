@@ -1,4 +1,6 @@
+// libraries
 import React, { useState } from "react";
+// hooks
 import { useValidation } from "./useValidation";
 
 export const useInput = (initialValue, validations) => {

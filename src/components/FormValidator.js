@@ -1,4 +1,6 @@
+// libraries
 import React from "react";
+// hooks
 import { useInput } from "../hooks/useInput";
 
 export const FormValidator = () => {
@@ -25,7 +27,7 @@ export const FormValidator = () => {
         {email.isCameOut && email.isEmpty && (
           <small className="text-danger">Please enter email</small>
         )}
-        {email.isCameOut && email.isValidEmail && !email.isEmpty && (
+        {email.isValidEmail && !email.isEmpty && (
           <small className="text-danger">Email is not valid</small>
         )}
       </div>
@@ -70,7 +72,10 @@ export const FormValidator = () => {
           Check me out
         </label>
       </div>
-      <button type="submit" className="btn btn-primary w-100" disabled={!email.isValidInput}>
+      <button
+        type="submit"
+        className="btn btn-primary w-100"
+        disabled={!email.isValidInput || !password.isValidInput}>
         Submit
       </button>
     </form>

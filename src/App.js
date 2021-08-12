@@ -1,6 +1,8 @@
-import "./App.scss";
+// hooks
 import { FormValidator } from "./components/FormValidator";
 
+// styles
+import "./App.scss";
 
 function App() {
   return (
