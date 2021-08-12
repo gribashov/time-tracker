@@ -67,7 +67,12 @@ export const FormValidator = () => {
         )}
       </div>
       <div className="mb-3 form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="exampleCheck1"
+          disabled={!email.isValidInput || !password.isValidInput}
+        />
         <label className="form-check-label" for="exampleCheck1">
           Check me out
         </label>
