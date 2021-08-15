@@ -13,7 +13,10 @@ const uri =
 
 const start = async () => {
   try {
-    await mongoose.connect(uri, { useNewUrlParser: true });
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     app.listen(PORT, () => console.log(`server working in ${PORT}`));
   } catch (e) {
     console.error(e);
