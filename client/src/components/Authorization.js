@@ -3,7 +3,7 @@ import React from "react";
 // hooks
 import { useInput } from "../hooks/useInput";
 
-export const FormValidator = () => {
+export const Authorization = () => {
   const email = useInput("", { empty: true, validEmail: true });
   const password = useInput("", { empty: true, minLength: 4, maxLength: 22 });
 

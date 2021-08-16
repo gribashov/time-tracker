@@ -14,3 +14,23 @@ body {
   height: 100vh;
   justify-content: center;
 }
+
+.transformator {
+  max-width: 1150px;
+}
+
+.image-transform {
+  min-width: 250px;
+  display: block;
+  width: 100%;
+}
+
+// .nopadding {
+//   padding: 0 !important;
+//   margin: 0 !important;
+// }
+
+.mx {
+  margin-left: 20px;
+  margin-right: 20px;
+}

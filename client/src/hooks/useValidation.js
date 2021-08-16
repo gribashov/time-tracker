@@ -1,7 +1,7 @@
 // libraries
 import React, { useState, useEffect } from "react";
 
-export const useValidation = (value, validations) => {
+export const useValidation = (value, validations, value2) => {
   const [isEmpty, setIsEmpty] = useState(true);
   const [isMinLength, setIsMinLength] = useState(false);
   const [isMaxLength, setIsMaxLength] = useState(false);
