@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from "react";
+import { Route, Redirect } from "react-router-dom";
 // hooks
-import { Authorization } from "./components/Authorization";
+import { Login } from "./components/Login";
 import { Registration } from "./components/Registration";
 import illustration from "./illustrations/time.svg";
 
@@ -7,6 +9,8 @@ import illustration from "./illustrations/time.svg";
 import "./index.scss";
 
 function App() {
+  const [data, setData] = useState(null);
+  useEffect(() => {}, []);
   return (
     <>
       <div className="d-flex row align-items-center transformator">
@@ -14,8 +18,15 @@ function App() {
           <img src={illustration} alt="logo" className="image-transform" />
         </div>
         <div className="col mx">
-          <Registration />
-          {/* <Authorization /> */}
+          <Redirect from="/" to="/registration" />
+
+          <Route path={process.env.PUBLIC_URL + "/registration"} exact>
+            <Registration />
+          </Route>
+
+          <Route path={process.env.PUBLIC_URL + "/login"} exact>
+            <Login />
+          </Route>
         </div>
       </div>
     </>

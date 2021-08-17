@@ -4,15 +4,13 @@ import { Link } from "react-router-dom";
 // hooks
 import { useInput } from "../hooks/useInput";
 
-export const Registration = () => {
+export const Login = () => {
   const email = useInput("", { empty: true, validEmail: true });
   const password = useInput("", { empty: true, minLength: 4, maxLength: 22 });
 
-  const password2 = useInput("", { empty: true, minLength: 4, maxLength: 22 });
-
   return (
     <>
-      <h1 className="mb-3">Registration</h1>
+      <h1 className="mb-3">Login</h1>
       <form>
         <div className="mb-3">
           <label for="text" className="form-label">
@@ -49,8 +47,7 @@ export const Registration = () => {
           ${
             (password.isCameOut && password.isEmpty) ||
             (password.isMinLength && !password.isEmpty) ||
-            (password.isMaxLength && !password.isEmpty) ||
-            password2.value !== password.value
+            (password.isMaxLength && !password.isEmpty)
               ? "border border-danger shadow-none"
               : "border border-primary"
           }
@@ -60,50 +57,40 @@ export const Registration = () => {
             <small className="text-danger">Please enter password</small>
           )}
           {password.isMinLength && !password.isEmpty && (
-            <small className="text-danger">Password input must be at least 4 characters</small>
+            <small className="text-danger">
+              Password input must be at
+              <br /> least 4 characters
+            </small>
           )}
           {password.isMaxLength && !password.isEmpty && (
-            <small className="text-danger">Password must be less than 22 characters</small>
+            <small className="text-danger">
+              Password must be less than <br />
+              22 characters
+            </small>
           )}
         </div>
-        <div className="mb-3">
-          <label for="password2" className="form-label">
-            Confirm Password
-          </label>
+        <div className="mb-3 form-check">
           <input
-            type="password"
-            onChange={(e) => password2.onChange(e)}
-            onBlur={(e) => password2.onBlur(e)}
-            value={password2.value}
-            className={`form-control 
-          ${
-            (password2.isCameOut && password2.isEmpty) ||
-            (password2.isMinLength && !password2.isEmpty) ||
-            (password2.isMaxLength && !password2.isEmpty) ||
-            password2.value !== password.value
-              ? "border border-danger shadow-none"
-              : "border border-primary"
-          }
-          `}
+            type="checkbox"
+            className="form-check-input"
+            id="exampleCheck1"
+            disabled={!email.isValidInput || !password.isValidInput}
           />
-          {password2.isCameOut && password2.isEmpty && (
-            <small className="text-danger">Please confirm password</small>
-          )}
-          {password.value !== password2.value && !password2.isEmpty && (
-            <small className="text-danger">Passwords do not match</small>
-          )}
+          <label className="form-check-label" for="exampleCheck1">
+            Check me out
+          </label>
         </div>
         <button
           type="submit"
-          className="btn btn-primary w-100 mt-3"
-          disabled={!email.isValidInput || !password.isValidInput || !password2.value}>
-          Sign Up
+          className="btn btn-primary w-100"
+          disabled={!email.isValidInput || !password.isValidInput}>
+          Sign in
         </button>
       </form>
-      <Link to={process.env.PUBLIC_URL + "/login"}>
+      <Link to={process.env.PUBLIC_URL + "/registration"}>
         <nav class="nav justify-content-center">
           <a className="nav-link text-xs" href="/">
-            Sign in
+            Sign up
           </a>
         </nav>
       </Link>
