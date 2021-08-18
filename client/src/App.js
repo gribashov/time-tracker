@@ -13,11 +13,11 @@ function App() {
   useEffect(() => {}, []);
   return (
     <>
-      <div className="d-flex row align-items-center transformator">
+      <div className="d-flex row align-items-center">
         <div className="col mx">
           <img src={illustration} alt="logo" className="image-transform" />
         </div>
-        <div className="col mx">
+        <div className="d-block col mx">
           <Redirect from="/" to="/registration" />
 
           <Route path={process.env.PUBLIC_URL + "/registration"} exact>

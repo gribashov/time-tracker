@@ -5,15 +5,44 @@ import { Link } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 
 export const Registration = () => {
+  const username = useInput("", { empty: true, minLength: 4, maxLength: 22 });
   const email = useInput("", { empty: true, validEmail: true });
   const password = useInput("", { empty: true, minLength: 4, maxLength: 22 });
-
   const password2 = useInput("", { empty: true, minLength: 4, maxLength: 22 });
 
   return (
     <>
       <h1 className="mb-3">Registration</h1>
       <form>
+        <div className="mb-3">
+          <label for="username" className="form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            onChange={(e) => username.onChange(e)}
+            onBlur={(e) => username.onBlur(e)}
+            value={username.value}
+            className={`form-control 
+          ${
+            (username.isCameOut && username.isEmpty) ||
+            (username.isMinLength && !username.isEmpty) ||
+            (username.isMaxLength && !username.isEmpty)
+              ? "border border-danger shadow-none"
+              : "border border-primary"
+          }
+          `}
+          />
+          {username.isCameOut && username.isEmpty && (
+            <small className="text-danger">Please enter username</small>
+          )}
+          {username.isMinLength && !username.isEmpty && (
+            <small className="text-danger">Username input must be at least 4 characters</small>
+          )}
+          {username.isMaxLength && !username.isEmpty && (
+            <small className="text-danger">Username must be less than 22 characters</small>
+          )}
+        </div>
         <div className="mb-3">
           <label for="text" className="form-label">
             Email
@@ -96,7 +125,12 @@ export const Registration = () => {
         <button
           type="submit"
           className="btn btn-primary w-100 mt-3"
-          disabled={!email.isValidInput || !password.isValidInput || !password2.value}>
+          disabled={
+            !username.isValidInput ||
+            !email.isValidInput ||
+            !password.isValidInput ||
+            !password2.value
+          }>
           Sign Up
         </button>
       </form>
