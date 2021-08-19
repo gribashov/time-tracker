@@ -7,10 +7,17 @@ const userModel = require("../models/user-model");
 
 class UserService {
   async registration(username, email, password) {
-    // if candidate !== null -> errror already exists
-    const candidate = await userModel.find({ email });
-    if (candidate.email) {
-      throw new Error(`User ${email} already exists`);
+    const candidate = await userModel.findOne({ $or: [{ username: username }, { email: email }] });
+
+    console.log(candidate);
+
+    if (candidate) {
+      if (candidate.email === email) {
+        throw new Error(`User with email: ${email} already exists`);
+      }
+      if (candidate.username === username) {
+        throw new Error(`User with username: ${username} already exists`);
+      }
     }
     // generate password and activation link
     const hashPassword = await bcrypt.hash(password, 3); //hash password
@@ -19,7 +26,6 @@ class UserService {
 
     const tokens = tokenService.generateToken({ ...user }); // generate unique tokens -> [access, refresh] for user
     await tokenService.saveToken(user.id, tokens.refreshToken); // save refresh tokens in db
-
     return {
       ...tokens,
       user: user,

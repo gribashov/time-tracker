@@ -11,23 +11,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
 }
 
-.image-transform {
-  min-height: 250px;
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+embed {
   min-width: 250px;
-  display: block;
+  min-height: 250px;
   width: 100%;
 }
 
-// .nopadding {
-//   padding: 0 !important;
-//   margin: 0 !important;
-// }
-
-.mx {
-  margin-left: 20px;
-  margin-right: 20px;
+.form {
+  min-width: 250px;
+  min-height: 250px;
+  width: 100%;
 }

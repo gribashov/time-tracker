@@ -12,7 +12,7 @@ export const Registration = () => {
 
   return (
     <>
-      <h1 className="mb-3">Registration</h1>
+      <h1 className="mb-3">Create account</h1>
       <form>
         <div className="mb-3">
           <label for="username" className="form-label">

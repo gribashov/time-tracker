@@ -11,22 +11,33 @@ import "./index.scss";
 function App() {
   const [data, setData] = useState(null);
   useEffect(() => {}, []);
+
+  const preventDragHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
-      <div className="d-flex row align-items-center">
+      <div className="d-flex row nopadding">
         <div className="col mx">
-          <img src={illustration} alt="logo" className="image-transform" />
+          <embed
+            src={illustration}
+            alt="logo"
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={preventDragHandler}></embed>
         </div>
-        <div className="d-block col mx">
-          <Redirect from="/" to="/registration" />
+        <div className="col">
+          <div className="form">
+            <Redirect from="/" to="/registration" />
 
-          <Route path={process.env.PUBLIC_URL + "/registration"} exact>
-            <Registration />
-          </Route>
+            <Route path={process.env.PUBLIC_URL + "/registration"} exact>
+              <Registration />
+            </Route>
 
-          <Route path={process.env.PUBLIC_URL + "/login"} exact>
-            <Login />
-          </Route>
+            <Route path={process.env.PUBLIC_URL + "/login"} exact>
+              <Login />
+            </Route>
+          </div>
         </div>
       </div>
     </>
