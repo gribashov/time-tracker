@@ -20,14 +20,16 @@ body {
   margin: 0 !important;
 }
 
-embed {
+.form {
   min-width: 250px;
   min-height: 250px;
   width: 100%;
 }
 
-.form {
+embed {
   min-width: 250px;
   min-height: 250px;
   width: 100%;
+
+  pointer-events: none;
 }
