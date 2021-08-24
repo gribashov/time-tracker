@@ -1,42 +1,42 @@
-// npm libraries
 require("dotenv").config();
+
 const express = require("express");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
+const fileUpload = require("express-fileupload");
 
-// app routers from router folder
-const router = require("./router/index");
-
-// test
-const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
-// for correct contact server with browser
 app.use(
-  cors({
-    origin: ["http://localhost:3001"],
-    credentials: true,
+  fileUpload({
+    useTempFiles: true,
   }),
 );
 
-// 1par - route 2par - router
-app.use("/api", router);
+// routes
+app.use("/user", require("./routes/userRouter"));
 
-const start = async () => {
-  try {
-    // connect to db
-    await mongoose.connect(process.env.DB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    // start app, callback if server is started
-    app.listen(PORT, () => console.log(`server working in ${PORT}`));
-  } catch (e) {
-    console.error(e);
-  }
-};
+// connect to mongodb
+const URI = process.env.MONGODB_URL;
+mongoose.connect(
+  URI,
+  {
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("connected to mongodb");
+  },
+);
 
-start();
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log("server is running on port", PORT);
+});
